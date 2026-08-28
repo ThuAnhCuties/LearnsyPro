@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Spacer chừa chỗ status bar tại runtime — xem WindowInsetsUtils.applyTopInsetHeight().
+         Toolbar giữ nguyên actionBarSize cố định, không bị phình cao. -->
+    <View
+        android:id="@+id/status_bar_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/surface" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/surface"
+        app:titleTextColor="@color/text_primary"
+        app:navigationIcon="@drawable/ic_back"
+        app:menu="@menu/menu_note_editor" />
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@null"
+        android:hint="@string/notes_title_hint"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_hint"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:inputType="textCapSentences"
+        android:maxLines="2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/outline_variant" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@null"
+            android:gravity="top|start"
+            android:hint="@string/notes_content_hint"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:textSize="16sp"
+            android:lineSpacingExtra="6dp"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minHeight="300dp" />
+    </ScrollView>
+
+    <!-- Thanh công cụ định dạng kiểu app Note thật: cuộn ngang vì có nhiều nút (đậm/nghiêng/
+         gạch chân/màu chữ/cỡ chữ/gạch đầu dòng/checklist/chèn ảnh) khó vừa 1 màn hình hẹp. -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="4dp">
+
+            <ImageButton
+                android:id="@+id/btn_bold"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_format_bold"
+                android:contentDescription="@string/notes_fmt_bold" />
+
+            <ImageButton
+                android:id="@+id/btn_italic"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_format_italic"
+                android:contentDescription="@string/notes_fmt_italic" />
+
+            <ImageButton
+                android:id="@+id/btn_underline"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_format_underline"
+                android:contentDescription="@string/notes_fmt_underline" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@color/outline_variant" />
+
+            <ImageButton
+                android:id="@+id/btn_color"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_format_color"
+                android:contentDescription="@string/notes_fmt_color" />
+
+            <ImageButton
+                android:id="@+id/btn_font_size"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_format_size"
+                android:contentDescription="@string/notes_fmt_size" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@color/outline_variant" />
+
+            <ImageButton
+                android:id="@+id/btn_bullet_list"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_format_list_bulleted"
+                android:contentDescription="@string/notes_fmt_bullet" />
+
+            <ImageButton
+                android:id="@+id/btn_checklist"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_checklist"
+                android:contentDescription="@string/notes_fmt_checklist" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@color/outline_variant" />
+
+            <ImageButton
+                android:id="@+id/btn_insert_image"
+                style="@style/App.Note.ToolbarButton"
+                android:src="@drawable/ic_insert_image"
+                android:contentDescription="@string/notes_fmt_image" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
